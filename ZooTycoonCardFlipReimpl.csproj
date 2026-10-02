@@ -1,20 +1,35 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <AssemblyName>ZooTycoonCardFlipReimpl</AssemblyName>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
     <OutputType>WinExe</OutputType>
-    <UseWindowsForms>True</UseWindowsForms>
     <TargetFramework>net8.0-windows7.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <!-- The recovered sources annotate nullability but never null-check, so keep the
+         annotation syntax without turning on the null-state warnings. -->
+    <Nullable>annotations</Nullable>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <PlatformTarget>x64</PlatformTarget>
-  </PropertyGroup>
-  <PropertyGroup>
-    <LangVersion>14.0</LangVersion>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-  </PropertyGroup>
-  <PropertyGroup>
+    <AssemblyName>ZooTycoonCardFlipReimpl</AssemblyName>
+    <RootNamespace>ZooTycoonCardFlipReimpl</RootNamespace>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
-  <ItemGroup />
-  <ItemGroup />
+
+  <!--
+    The game keeps its assets next to the executable rather than embedding them, so the
+    whole assets tree is copied to the build and publish output untouched.
+  -->
+  <ItemGroup>
+    <Content Include="../../assets/**/*">
+      <Link>assets/%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>
