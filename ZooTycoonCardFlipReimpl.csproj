@@ -4,8 +4,6 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows7.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
-    <!-- The recovered sources annotate nullability but never null-check, so keep the
-         annotation syntax without turning on the null-state warnings. -->
     <Nullable>annotations</Nullable>
     <LangVersion>latest</LangVersion>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -19,11 +17,6 @@
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
     <InvariantGlobalization>false</InvariantGlobalization>
   </PropertyGroup>
-
-  <!--
-    The game keeps its assets next to the executable rather than embedding them, so the
-    whole assets tree is copied to the build and publish output untouched.
-  -->
   <ItemGroup>
     <Content Include="../../assets/**/*">
       <Link>assets/%(RecursiveDir)%(Filename)%(Extension)</Link>
